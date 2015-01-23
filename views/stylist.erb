@@ -1,0 +1,13 @@
+<% if @stylist.clients.any?() %>
+
+ <h1><%= @stylist %>'s clients:</h1>
+ <ul>
+   <% @stylist.clients().each() do |client| %>
+   <li><%= client.name() %></li>
+   <% end %>
+ </ul>
+ <% else %>
+ <p>No current clients</p>
+ <% end %>
+
+ <a href="/">View All Stylists</a>
