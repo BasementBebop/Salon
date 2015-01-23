@@ -24,18 +24,28 @@ class Stylist
     clients.each() do |client|
       name = client.fetch("name")
       stylist_id = client.fetch("stylist_id").to_i()
-      id = client.fetch("id").to_i()
-      stylist_clients.push(Client.new({:name => name, :stylist_id => stylist_id, :id => id}))
+      stylist_clients.push(Client.new({:name => name, :stylist_id => stylist_id}))
     end
     stylist_clients
   end
 
   define_method(:save) do
-    DB.exec("INSERT INTO stylists (name) VALUES ('#{name}')")
+    result = DB.exec("INSERT INTO stylists (name) VALUES ('#{@name}') RETURNING id;")
+    @id = result.first().fetch("id").to_i()
   end
 
   define_method(:==) do |another_stylist|
-    self.name().eql?(another_stylist.name()).&(self.id().eql?(another_stylist.id()))
+    self.name().==(another_stylist.name()).&(self.id().==(another_stylist.id()))
+  end
+
+  define_singleton_method(:find) do |id|
+    found_stylist = nil
+    Stylist.all().each() do |stylist|
+      if stylist.id().eql?(id)
+        found_stylist = stylist
+      end
+    end
+    found_stylist
   end
 
 
