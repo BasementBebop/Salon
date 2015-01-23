@@ -19,5 +19,12 @@ class Client
     end
     all_clients
   end
-      
+
+  define_method(:save) do
+    DB.exec("INSERT INTO clients (name, stylist_id) VALUES ('#{name}', #{stylist_id})")
+  end
+
+  define_method(:==) do |another_client|
+    self.name().eql?(another_client.name()).&(self.stylist_id().eql?(another_client.stylist_id()))
+  end
 end
