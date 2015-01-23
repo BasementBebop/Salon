@@ -1,0 +1,22 @@
+<h1>Select a stylist to view their clients</h1>
+
+<% if @stylists.any?() %>
+
+<ul>
+  <% @lists.each do |list| %>
+  <li><a href="/stylists/<%= stylist.id() %>"><%= stylist.name() %></a></li>
+  <% end %>
+</ul>
+<% else %>
+<p>No stylists currently active</p>
+<% end %>
+
+<p>Add a new stylist:</p>
+
+<form action="/stylists" method="post">
+
+  <label for="name">Name:</label>
+  <input id="name" name="name" type="text">
+
+  <button type="submit">Add</button>
+</form>
