@@ -11,3 +11,11 @@ get("/") do
   @stylists = Stylist.all()
   erb(:index)
 end
+
+post("/add_stylist") do
+  name = params.fetch("name")
+  stylist = Stylist.new({:name => name, :id => nil})
+  stylist.save()
+  @stylists = Stylist.all()
+  erb(:index)
+end

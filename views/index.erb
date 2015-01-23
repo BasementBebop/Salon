@@ -3,7 +3,7 @@
 <% if @stylists.any?() %>
 
 <ul>
-  <% @lists.each do |list| %>
+  <% @stylists.each do |stylist| %>
   <li><a href="/stylists/<%= stylist.id() %>"><%= stylist.name() %></a></li>
   <% end %>
 </ul>
@@ -13,7 +13,7 @@
 
 <p>Add a new stylist:</p>
 
-<form action="/stylists" method="post">
+<form action="/add_stylist" method="post">
 
   <label for="name">Name:</label>
   <input id="name" name="name" type="text">
