@@ -8,6 +8,25 @@ describe(Stylist) do
     end
   end
 
+  describe("#clients") do
+    it("returns an array of all clients for that stylist") do
+      stylist1 = Stylist.new({:name => "Grand Master Comb", :id => 1})
+      stylist1.save()
+      client1 = Client.new({:name => "Dwayne The Rock Johnson", :stylist_id => 1, :id => nil})
+      client1.save()
+      client2 = Client.new({:name => "Markie Mark Wahlberg", :stylist_id => 1, :id => nil})
+      client2.save()
+      expect(stylist1.clients()).to(eq([client1, client2]))
+    end
+  end
+
+  describe("#save") do
+    it("saves a stylist to the database") do
+      stylist1 = Stylist.new({:name => "Grand Master Comb", :id => nil})
+      expect(stylist1.name()).to(eq("Grand Master Comb"))
+    end
+  end
+
   describe("#==") do
     it("is the same stylist if the name is the same") do
       stylist1 = Stylist.new({:name => "Grand Master Comb", :id => nil})

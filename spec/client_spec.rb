@@ -10,8 +10,8 @@ describe(Client)do
 
   describe("#save") do
     it("saves a client to the database") do
-      test_client = Client.new({:name => "Flash Gordon", :stylist_id => 1, :id => nil})
-      expect(test_client.name()).to(eq("Flash Gordon"))
+      client1 = Client.new({:name => "Flash Gordon", :stylist_id => 1, :id => nil})
+      expect(client1.name()).to(eq("Flash Gordon"))
     end
   end
 
