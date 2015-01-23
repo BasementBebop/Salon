@@ -18,4 +18,8 @@ class Stylist
     all_stylists
   end
 
+  define_method(:==) do |another_stylist|
+    self.name().eql?(another_stylist.name()).&(self.id().eql?(another_stylist.id()))
+
+  end
 end
